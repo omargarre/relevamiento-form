@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Relevamiento inicial – Desarrollo de aplicación</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h1>Relevamiento inicial para desarrollo de aplicación</h1>
-<p>Complete este formulario. Al finalizar podrá descargar un PDF o enviarlo por mail.</p>
+<p>Completá el formulario. Al enviarlo, recibiremos la información por mail.</p>
 
-<form id="relevamientoForm">
+<form
+  action="https://formsubmit.co/omargarre@gmail.com"
+  method="POST"
+>
 
+  <!-- CONFIGURACIÓN FORMSUBMIT -->
+  <input type="hidden" name="_subject" value="Nuevo relevamiento de proyecto">
+  <input type="hidden" name="_template" value="box">
+  <input type="hidden" name="_captcha" value="false">
+
+  <!-- 1. INFO GENERAL -->
   <section>
     <h2>1. Información general</h2>
 
     <label>Nombre del proyecto</label>
-    <input type="text" name="Nombre del proyecto">
+    <input type="text" name="Nombre del proyecto" required>
 
     <label>¿Qué problema quiere resolver?</label>
-    <textarea name="Problema a resolver"></textarea>
+    <textarea name="Problema a resolver" required></textarea>
 
     <label>Tipo de proyecto</label>
     <select name="Tipo de proyecto">
@@ -30,13 +39,14 @@
     </select>
   </section>
 
+  <!-- 2. USUARIOS -->
   <section>
     <h2>2. Tipos de usuarios</h2>
 
-    <label><input type="checkbox" name="Usuarios" value="Público general"> Público general</label>
-    <label><input type="checkbox" name="Usuarios" value="Técnicos / inspectores"> Técnicos / inspectores</label>
-    <label><input type="checkbox" name="Usuarios" value="Vendedores"> Vendedores</label>
-    <label><input type="checkbox" name="Usuarios" value="Recorridas"> Personas en recorridas</label>
+    <label><input type="checkbox" name="Usuarios[]" value="Público general"> Público general</label>
+    <label><input type="checkbox" name="Usuarios[]" value="Técnicos / inspectores"> Técnicos / inspectores</label>
+    <label><input type="checkbox" name="Usuarios[]" value="Vendedores"> Vendedores</label>
+    <label><input type="checkbox" name="Usuarios[]" value="Recorridas"> Personas en recorridas</label>
 
     <label>Frecuencia de uso</label>
     <select name="Frecuencia de uso">
@@ -47,6 +57,7 @@
     </select>
   </section>
 
+  <!-- 3. CONTEXTO -->
   <section>
     <h2>3. Contexto de uso</h2>
 
@@ -61,13 +72,14 @@
     </select>
   </section>
 
+  <!-- 4. CARGA -->
   <section>
     <h2>4. Carga de información</h2>
 
-    <label><input type="checkbox" name="Datos importantes" value="Texto"> Texto</label>
-    <label><input type="checkbox" name="Datos importantes" value="Fotos"> Fotos</label>
-    <label><input type="checkbox" name="Datos importantes" value="Videos"> Videos</label>
-    <label><input type="checkbox" name="Datos importantes" value="Ubicación"> Ubicación</label>
+    <label><input type="checkbox" name="Datos importantes[]" value="Texto"> Texto</label>
+    <label><input type="checkbox" name="Datos importantes[]" value="Fotos"> Fotos</label>
+    <label><input type="checkbox" name="Datos importantes[]" value="Videos"> Videos</label>
+    <label><input type="checkbox" name="Datos importantes[]" value="Ubicación"> Ubicación</label>
 
     <label>Forma de carga</label>
     <select name="Forma de carga">
@@ -77,6 +89,7 @@
     </select>
   </section>
 
+  <!-- 5. MVP -->
   <section>
     <h2>5. Alcance del MVP</h2>
 
@@ -87,9 +100,10 @@
     <textarea name="MVP futuro"></textarea>
   </section>
 
+  <!-- ACCIONES -->
   <div class="acciones">
+    <button type="submit">Enviar formulario</button>
     <button type="button" onclick="generarPDF()">Descargar PDF</button>
-    <button type="button" onclick="enviarMail()">Enviar por mail</button>
   </div>
 
 </form>
