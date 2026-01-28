@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relevamiento inicial – Desarrollo de aplicación</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>Relevamiento inicial para desarrollo de aplicación</h1>
+<p>Complete este formulario para definir alcance, uso y funcionalidades del proyecto.</p>
+
+<form id="relevamientoForm">
+
+  <section>
+    <h2>1. Información general</h2>
+
+    <label>Nombre del proyecto</label>
+    <input type="text" name="nombre_proyecto" />
+
+    <label>¿Qué problema quiere resolver?</label>
+    <textarea name="problema"></textarea>
+
+    <label>Tipo de proyecto</label>
+    <select name="tipo_proyecto">
+      <option>Personal</option>
+      <option>Comercial</option>
+      <option>Interno</option>
+      <option>Otro</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>2. Tipos de usuarios</h2>
+
+    <label>¿Quiénes usarán la app?</label>
+    <label><input type="checkbox" name="usuarios" value="Publico general"> Público general</label>
+    <label><input type="checkbox" name="usuarios" value="Tecnicos"> Técnicos / inspectores</label>
+    <label><input type="checkbox" name="usuarios" value="Vendedores"> Vendedores</label>
+    <label><input type="checkbox" name="usuarios" value="Recorridas"> Personas en recorridas</label>
+
+    <label>Frecuencia de uso</label>
+    <select name="frecuencia">
+      <option>Una sola vez</option>
+      <option>Ocasional</option>
+      <option>Varias veces por semana</option>
+      <option>Todos los días</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>3. Contexto de uso</h2>
+
+    <label>¿En qué situaciones se usará la app?</label>
+    <textarea name="contexto"></textarea>
+
+    <label>Conectividad</label>
+    <select name="internet">
+      <option>Sí</option>
+      <option>No</option>
+      <option>A veces</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>4. Carga de información</h2>
+
+    <label>Tipo de información importante</label>
+    <label><input type="checkbox" name="datos" value="Texto"> Texto</label>
+    <label><input type="checkbox" name="datos" value="Fotos"> Fotos</label>
+    <label><input type="checkbox" name="datos" value="Videos"> Videos</label>
+    <label><input type="checkbox" name="datos" value="Ubicacion"> Ubicación</label>
+
+    <label>Forma de carga</label>
+    <select name="forma_carga">
+      <option>Muy simple</option>
+      <option>Guiada paso a paso</option>
+      <option>Detallada</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>9. Alcance del MVP</h2>
+
+    <label>Imprescindible en la primera versión</label>
+    <textarea name="mvp_imprescindible"></textarea>
+
+    <label>Puede esperar</label>
+    <textarea name="mvp_futuro"></textarea>
+  </section>
+
+  <button type="submit">Enviar relevamiento</button>
+
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>
