@@ -8,7 +8,7 @@
 <body>
 
 <h1>Relevamiento inicial para desarrollo de aplicación</h1>
-<p>Complete este formulario para definir alcance, uso y funcionalidades del proyecto.</p>
+<p>Complete este formulario. Al finalizar podrá descargar un PDF o enviarlo por mail.</p>
 
 <form id="relevamientoForm">
 
@@ -16,13 +16,13 @@
     <h2>1. Información general</h2>
 
     <label>Nombre del proyecto</label>
-    <input type="text" name="nombre_proyecto" />
+    <input type="text" name="Nombre del proyecto">
 
     <label>¿Qué problema quiere resolver?</label>
-    <textarea name="problema"></textarea>
+    <textarea name="Problema a resolver"></textarea>
 
     <label>Tipo de proyecto</label>
-    <select name="tipo_proyecto">
+    <select name="Tipo de proyecto">
       <option>Personal</option>
       <option>Comercial</option>
       <option>Interno</option>
@@ -33,14 +33,13 @@
   <section>
     <h2>2. Tipos de usuarios</h2>
 
-    <label>¿Quiénes usarán la app?</label>
-    <label><input type="checkbox" name="usuarios" value="Publico general"> Público general</label>
-    <label><input type="checkbox" name="usuarios" value="Tecnicos"> Técnicos / inspectores</label>
-    <label><input type="checkbox" name="usuarios" value="Vendedores"> Vendedores</label>
-    <label><input type="checkbox" name="usuarios" value="Recorridas"> Personas en recorridas</label>
+    <label><input type="checkbox" name="Usuarios" value="Público general"> Público general</label>
+    <label><input type="checkbox" name="Usuarios" value="Técnicos / inspectores"> Técnicos / inspectores</label>
+    <label><input type="checkbox" name="Usuarios" value="Vendedores"> Vendedores</label>
+    <label><input type="checkbox" name="Usuarios" value="Recorridas"> Personas en recorridas</label>
 
     <label>Frecuencia de uso</label>
-    <select name="frecuencia">
+    <select name="Frecuencia de uso">
       <option>Una sola vez</option>
       <option>Ocasional</option>
       <option>Varias veces por semana</option>
@@ -52,10 +51,10 @@
     <h2>3. Contexto de uso</h2>
 
     <label>¿En qué situaciones se usará la app?</label>
-    <textarea name="contexto"></textarea>
+    <textarea name="Contexto de uso"></textarea>
 
     <label>Conectividad</label>
-    <select name="internet">
+    <select name="Conectividad">
       <option>Sí</option>
       <option>No</option>
       <option>A veces</option>
@@ -65,14 +64,13 @@
   <section>
     <h2>4. Carga de información</h2>
 
-    <label>Tipo de información importante</label>
-    <label><input type="checkbox" name="datos" value="Texto"> Texto</label>
-    <label><input type="checkbox" name="datos" value="Fotos"> Fotos</label>
-    <label><input type="checkbox" name="datos" value="Videos"> Videos</label>
-    <label><input type="checkbox" name="datos" value="Ubicacion"> Ubicación</label>
+    <label><input type="checkbox" name="Datos importantes" value="Texto"> Texto</label>
+    <label><input type="checkbox" name="Datos importantes" value="Fotos"> Fotos</label>
+    <label><input type="checkbox" name="Datos importantes" value="Videos"> Videos</label>
+    <label><input type="checkbox" name="Datos importantes" value="Ubicación"> Ubicación</label>
 
     <label>Forma de carga</label>
-    <select name="forma_carga">
+    <select name="Forma de carga">
       <option>Muy simple</option>
       <option>Guiada paso a paso</option>
       <option>Detallada</option>
@@ -80,19 +78,24 @@
   </section>
 
   <section>
-    <h2>9. Alcance del MVP</h2>
+    <h2>5. Alcance del MVP</h2>
 
     <label>Imprescindible en la primera versión</label>
-    <textarea name="mvp_imprescindible"></textarea>
+    <textarea name="MVP imprescindible"></textarea>
 
     <label>Puede esperar</label>
-    <textarea name="mvp_futuro"></textarea>
+    <textarea name="MVP futuro"></textarea>
   </section>
 
-  <button type="submit">Enviar relevamiento</button>
+  <div class="acciones">
+    <button type="button" onclick="generarPDF()">Descargar PDF</button>
+    <button type="button" onclick="enviarMail()">Enviar por mail</button>
+  </div>
 
 </form>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
