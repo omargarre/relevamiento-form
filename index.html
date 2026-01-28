@@ -8,21 +8,18 @@
 <body>
 
 <h1>Relevamiento inicial para desarrollo de aplicación</h1>
-<p>Completá el formulario. Al enviarlo, recibiremos la información por mail.</p>
+<p>Complete el formulario. El envío se realiza automáticamente y recibiremos la información por mail.</p>
 
-<form
-  action="https://formsubmit.co/omargarre@gmail.com"
-  method="POST"
->
+<form id="relevamientoForm">
 
-  <!-- CONFIGURACIÓN FORMSUBMIT -->
+  <!-- CONFIG FORMSUBMIT -->
   <input type="hidden" name="_subject" value="Nuevo relevamiento de proyecto">
   <input type="hidden" name="_template" value="box">
   <input type="hidden" name="_captcha" value="false">
 
   <!-- 1. INFO GENERAL -->
   <section>
-    <h2>1. Información general</h2>
+    <h2>Información general</h2>
 
     <label>Nombre del proyecto</label>
     <input type="text" name="Nombre del proyecto" required>
@@ -41,7 +38,7 @@
 
   <!-- 2. USUARIOS -->
   <section>
-    <h2>2. Tipos de usuarios</h2>
+    <h2>Tipos de usuarios</h2>
 
     <label><input type="checkbox" name="Usuarios[]" value="Público general"> Público general</label>
     <label><input type="checkbox" name="Usuarios[]" value="Técnicos / inspectores"> Técnicos / inspectores</label>
@@ -59,7 +56,7 @@
 
   <!-- 3. CONTEXTO -->
   <section>
-    <h2>3. Contexto de uso</h2>
+    <h2>Contexto de uso</h2>
 
     <label>¿En qué situaciones se usará la app?</label>
     <textarea name="Contexto de uso"></textarea>
@@ -74,7 +71,7 @@
 
   <!-- 4. CARGA -->
   <section>
-    <h2>4. Carga de información</h2>
+    <h2>Carga de información</h2>
 
     <label><input type="checkbox" name="Datos importantes[]" value="Texto"> Texto</label>
     <label><input type="checkbox" name="Datos importantes[]" value="Fotos"> Fotos</label>
@@ -91,7 +88,7 @@
 
   <!-- 5. MVP -->
   <section>
-    <h2>5. Alcance del MVP</h2>
+    <h2>Alcance del MVP</h2>
 
     <label>Imprescindible en la primera versión</label>
     <textarea name="MVP imprescindible"></textarea>
