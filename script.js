@@ -97,8 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const data = recolectar();
 
     emailjs.send(
-      "TU_SERVICE_ID",
-      "TU_TEMPLATE_ID",
+      "service_formulario",
+      "template_0wmkcks",
       {
         contenido: generarHTML(data),
         fecha: new Date().toLocaleString()
