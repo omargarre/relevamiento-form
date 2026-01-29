@@ -5,3 +5,17 @@ textarea,input,select{width:100%;padding:6px;margin-top:4px}
 textarea{min-height:70px}
 .acciones{margin-top:30px;display:flex;gap:15px}
 button{padding:12px;font-size:16px;cursor:pointer}
+/* ===== Alineación correcta de checkboxes y radios ===== */
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 8px;            /* espacio entre cuadradito y texto */
+  margin: 6px 0;
+  cursor: pointer;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin: 0;
+}
