@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("relevamientoForm");
   const btnPdf = document.getElementById("btnPdf");
 
-  /* ===== ESTRUCTURA FIJA DEL DOCUMENTO ===== */
+  /* ===== ESTRUCTURA FIJA PARA EL MAIL ===== */
   const esquema = [
     ["1_1_Nombre_del_proyecto", "1.1 Nombre del proyecto"],
     ["1_2_Problema_a_resolver", "1.2 Problema a resolver"],
@@ -10,10 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ["1_3_Otro_detalle", "1.3 Otro (detalle)"],
 
     ["2_1_Quienes", "2.1 Quiénes usarán la aplicación"],
-    ["2_1_Otros_detalle", "2.1 Otros (detalle)"],
     ["2_2_Usuario_tipico", "2.2 Usuario típico"],
     ["2_3_Frecuencia", "2.3 Frecuencia de uso"],
-    ["2_4_Entorno", "2.4 Entorno de uso"],
+    ["2_4_Entorno", "2.4 Entorno"],
 
     ["3_1_Situaciones_uso", "3.1 Situaciones de uso"],
     ["3_2_Conexion", "3.2 Conectividad"],
@@ -32,22 +31,21 @@ document.addEventListener("DOMContentLoaded", () => {
     ["6_2_PDF_imprescindible", "6.2 Requisitos del PDF"],
     ["6_3_PDF_diseno", "6.3 Diseño del PDF"],
 
-    ["7_1_Compartir", "7.1 Forma de compartir"],
-    ["7_2_Enviar_a", "7.2 Envío del PDF"],
-    ["7_3_Historial_envios", "7.3 Historial de envíos"],
+    ["7_1_Compartir", "7.1 Compartir"],
+    ["7_2_Enviar_a", "7.2 Envío"],
+    ["7_3_Historial_envios", "7.3 Historial"],
 
-    ["8_1_Buscar_cercanos", "8.1 Búsqueda cercana"],
+    ["8_1_Buscar_cercanos", "8.1 Búsqueda"],
     ["8_2_Radio", "8.2 Radio"],
-    ["8_3_Info_lugares", "8.3 Info mostrada"],
+    ["8_3_Info_lugares", "8.3 Información"],
     ["8_4_Patrocinados", "8.4 Patrocinados"],
 
     ["9_1_MVP_imprescindible", "9.1 MVP imprescindible"],
     ["9_2_MVP_mas_adelante", "9.2 MVP futuro"],
     ["9_3_MVP_afuera", "9.3 Fuera del MVP"],
 
-    ["10_1_Exito", "10.1 Éxito del proyecto"],
+    ["10_1_Exito", "10.1 Éxito"],
     ["10_2_Deja_de_usar", "10.2 Motivos de abandono"],
-    ["10_2_Otro_detalle", "10.2 Otro (detalle)"],
 
     ["11_Usuarios_accesos_control", "11. Usuarios y accesos"],
     ["12_Almacenamiento_y_datos", "12. Almacenamiento"],
@@ -69,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return data;
   }
 
-  /* ===== GENERAR HTML ===== */
-  function generarHTML(data) {
+  /* ===== HTML PARA EL MAIL ===== */
+  function generarHTMLMail(data) {
     let html = "";
 
     esquema.forEach(([key, titulo]) => {
@@ -98,45 +96,22 @@ document.addEventListener("DOMContentLoaded", () => {
       "service_formulario",
       "template_0wmkcks",
       {
-        contenido: generarHTML(data),
+        contenido: generarHTMLMail(data),
         fecha: new Date().toLocaleString()
       }
     ).then(
       () => {
         alert("Formulario enviado correctamente.");
-        form.reset();
       },
-      (err) => {
+      err => {
         console.error(err);
         alert("Error al enviar el formulario.");
       }
     );
   });
 
-  /* ===== DESCARGA PDF ===== */
+  /* ===== PDF DESDE EL FORM REAL ===== */
   btnPdf.addEventListener("click", () => {
-    const data = recolectar();
-    const contenidoHTML = generarHTML(data);
-
-    const contenedor = document.createElement("div");
-    contenedor.style.position = "absolute";
-    contenedor.style.top = "0";
-    contenedor.style.left = "0";
-    contenedor.style.width = "210mm";
-    contenedor.style.padding = "20px";
-    contenedor.style.background = "#fff";
-    contenedor.style.opacity = "0";
-    contenedor.style.zIndex = "-1";
-
-    contenedor.innerHTML = `
-      <h1>Documento de recopilación inicial</h1>
-      <p>Fecha: ${new Date().toLocaleString()}</p>
-      <hr>
-      ${contenidoHTML}
-    `;
-
-    document.body.appendChild(contenedor);
-
     html2pdf()
       .set({
         margin: 10,
@@ -144,10 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         html2canvas: { scale: 2 },
         jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
       })
-      .from(contenedor)
-      .save()
-      .then(() => {
-        document.body.removeChild(contenedor);
-      });
+      .from(form)
+      .save();
   });
 });
