@@ -3,46 +3,68 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnPdf = document.getElementById("btnPdf");
 
   /* =========================
-     MAPA DE TÍTULOS (WORD)
+     TÍTULOS (igual al Word)
   ========================= */
   const titulos = {
     "1_1_Nombre_del_proyecto": "1.1 Nombre del proyecto",
     "1_2_Problema_a_resolver": "1.2 Describa brevemente qué problema quiere resolver con esta aplicación",
-    "1_3_Tipo": "1.3 El proyecto está pensado inicialmente como",
-    "2_1_Usuarios": "2.1 ¿Quiénes cree que usarán la aplicación?",
-    "2_2_Usuario": "2.2 ¿Qué nivel de familiaridad tienen con la tecnología?",
-    "3_1_Contexto": "3.1 Contexto de uso",
+    "1_3_Proyecto_tipo": "1.3 El proyecto está pensado inicialmente como",
+    "2_1_Quienes": "2.1 ¿Quiénes cree que usarán la aplicación?",
+    "2_2_Usuario_tipico": "2.2 El usuario típico",
+    "2_3_Frecuencia": "2.3 Frecuencia de uso",
+    "2_4_Entorno": "2.4 El usuario generalmente estará",
+    "3_1_Situaciones_uso": "3.1 Contexto de uso",
+    "3_2_Conexion": "3.2 Conectividad",
+    "3_3_Guardar_continuar": "3.3 Guardar para continuar",
+    "4_1_Info_importante": "4.1 Información más importante",
+    "4_2_Obligatorios": "4.2 Datos obligatorios",
+    "4_3_Tipo_carga": "4.3 Tipo de carga",
+    "4_4_Usuario_puede": "4.4 El usuario debería poder",
+    "5_1_Cuantas_fotos": "5.1 Cantidad de fotos",
+    "5_2_Video_importancia": "5.2 Uso de video",
+    "5_3_Video_deberia": "5.3 El video debería",
+    "6_1_PDF_uso": "6.1 Uso del PDF",
+    "6_2_PDF_imprescindible": "6.2 Requisitos del PDF",
+    "6_3_PDF_diseno": "6.3 Diseño del PDF",
+    "7_1_Compartir": "7.1 Forma de compartir",
+    "7_2_Enviar_a": "7.2 Envío del PDF",
+    "7_3_Historial_envios": "7.3 Historial de envíos",
+    "8_1_Buscar_cercanos": "8.1 Búsqueda cercana",
+    "8_2_Radio": "8.2 Radio de búsqueda",
+    "8_3_Info_lugares": "8.3 Información mostrada",
+    "8_4_Patrocinados": "8.4 Resultados patrocinados",
     "9_1_MVP_imprescindible": "9.1 Funcionalidades imprescindibles (MVP)",
-    "9_2_MVP_futuro": "9.2 Funcionalidades deseables a futuro",
-    "9_3_MVP_fuera": "9.3 Funcionalidades fuera del alcance",
-    "10_1_Exito": "10.1 ¿Cómo se medirá el éxito del proyecto?",
-    "12_3_Retencion": "12.3 Retención de la información",
-    "14_1_Usuarios": "14.1 Cantidad de usuarios",
-    "14_2_Registros": "14.2 Cantidad de registros",
-    "14_3_Fotos": "14.3 Uso de fotos / imágenes",
-    "16_1_Mantenimiento": "16.1 Mantenimiento"
+    "9_2_MVP_mas_adelante": "9.2 Funcionalidades futuras",
+    "9_3_MVP_afuera": "9.3 Fuera del MVP",
+    "10_1_Exito": "10.1 Éxito del proyecto",
+    "10_2_Deja_de_usar": "10.2 Motivos de abandono",
+    "11_Usuarios_accesos_control": "11. Usuarios, accesos y control",
+    "12_Almacenamiento_y_datos": "12. Almacenamiento y datos",
+    "13_Ubicacion_y_mapas": "13. Ubicación y mapas",
+    "14_Volumen_de_uso": "14. Volumen de uso",
+    "15_Evolucion_comercial": "15. Evolución comercial",
+    "16_Soporte_y_mantenimiento": "16. Soporte y mantenimiento"
   };
 
   /* =========================
-     AGRUPAR DATOS DEL FORM
+     RECOLECTAR Y AGRUPAR
   ========================= */
-  function recolectarDatos() {
+  function recolectar() {
     const data = {};
     const fd = new FormData(form);
 
-    for (const [key, value] of fd.entries()) {
-      if (key.startsWith("_")) continue;
-
-      if (!data[key]) data[key] = [];
-      data[key].push(value);
+    for (const [k, v] of fd.entries()) {
+      if (k.startsWith("_")) continue;
+      if (!data[k]) data[k] = [];
+      if (v && v.trim() !== "") data[k].push(v);
     }
     return data;
   }
 
   /* =========================
-     GENERAR PDF
+     PDF
   ========================= */
-  function generarPDF(datos) {
+  function generarPDF(data) {
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF("p", "mm", "a4");
 
@@ -53,24 +75,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
     pdf.setFontSize(10);
 
-    for (const key in datos) {
-      const titulo = titulos[key] || key;
+    for (const k in data) {
+      const titulo = titulos[k] || k;
 
       pdf.setFont(undefined, "bold");
       pdf.text(titulo, 10, y);
       y += 6;
 
       pdf.setFont(undefined, "normal");
-
-      datos[key].forEach(val => {
-        const texto = val && val.trim() ? val : "-";
-        const lineas = pdf.splitTextToSize("• " + texto, 180);
+      data[k].forEach(val => {
+        const lineas = pdf.splitTextToSize("- " + val, 180);
         pdf.text(lineas, 12, y);
         y += lineas.length * 5;
       });
 
       y += 6;
-
       if (y > 270) {
         pdf.addPage();
         y = 15;
@@ -81,58 +100,53 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* =========================
-     TEXTO PARA MAIL
+     TEXTO MAIL
   ========================= */
-  function armarTextoMail(datos) {
-    let texto = "DOCUMENTO DE RECOPILACIÓN INICIAL\n\n";
+  function textoMail(data) {
+    let txt = "DOCUMENTO DE RECOPILACIÓN INICIAL\n\n";
 
-    for (const key in datos) {
-      const titulo = titulos[key] || key;
-      texto += titulo + ":\n";
-
-      datos[key].forEach(v => {
-        texto += "- " + (v || "-") + "\n";
-      });
-
-      texto += "\n";
+    for (const k in data) {
+      const titulo = titulos[k] || k;
+      txt += titulo + ":\n";
+      data[k].forEach(v => txt += "- " + v + "\n");
+      txt += "\n";
     }
-    return texto;
+    return txt;
   }
 
   /* =========================
-     BOTÓN SOLO PDF
+     BOTÓN PDF
   ========================= */
   btnPdf.addEventListener("click", () => {
-    const datos = recolectarDatos();
-    generarPDF(datos);
+    generarPDF(recolectar());
   });
 
   /* =========================
-     ENVÍO COMPLETO
+     SUBMIT (PDF + MAIL)
   ========================= */
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async e => {
     e.preventDefault();
 
-    const datos = recolectarDatos();
-    generarPDF(datos);
+    const data = recolectar();
+    generarPDF(data);
 
     const mailData = new FormData();
-    mailData.append("_subject", "Documento de recopilación inicial");
+    mailData.append("subject", "Documento de recopilación inicial");
+    mailData.append("message", textoMail(data)); // ← CLAVE
     mailData.append("_captcha", "false");
-    mailData.append("_message", armarTextoMail(datos));
 
-    const res = await fetch("https://formsubmit.co/ajax/omargarre@gmail.com", {
+    const r = await fetch("https://formsubmit.co/ajax/omargarre@gmail.com", {
       method: "POST",
       body: mailData,
       headers: { Accept: "application/json" }
     });
 
-    if (!res.ok) {
-      alert("El PDF se generó, pero falló el envío del mail.");
+    if (!r.ok) {
+      alert("El PDF se generó, pero el mail falló.");
       return;
     }
 
-    alert("Formulario enviado correctamente.\nPDF generado y mail enviado.");
+    alert("Formulario enviado correctamente.");
     form.reset();
   });
 });
