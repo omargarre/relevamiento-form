@@ -1,46 +1,7 @@
-body {
-  font-family: Arial, sans-serif;
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
-  background-color: #fafafa;
-}
-
-h1 {
-  margin-bottom: 5px;
-}
-
-section {
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-}
-
-label {
-  display: block;
-  margin-top: 10px;
-}
-
-input[type="text"],
-textarea,
-select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-}
-
-textarea {
-  min-height: 80px;
-}
-
-.acciones {
-  margin-top: 30px;
-  display: flex;
-  gap: 15px;
-}
-
-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-}
+body{font-family:Arial,Helvetica,sans-serif;max-width:900px;margin:auto;padding:20px;background:#fafafa}
+section{margin-bottom:30px;border-bottom:1px solid #ddd;padding-bottom:20px}
+label{display:block;margin-top:8px}
+textarea,input,select{width:100%;padding:6px;margin-top:4px}
+textarea{min-height:70px}
+.acciones{margin-top:30px;display:flex;gap:15px}
+button{padding:12px;font-size:16px;cursor:pointer}
