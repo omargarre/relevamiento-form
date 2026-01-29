@@ -270,12 +270,13 @@
 
     <!-- 14 -->
     <section>
-      <h2>14. Volumen de uso</h2>
+      <p><strong>14. Volumen de uso</strong></p>
+<textarea
+  name="14_Volumen_de_uso_descripcion"
+  placeholder="Indique cantidades estimadas de usuarios, registros por día, fotos por registro, etc."
+></textarea>
 
-      <label><input type="checkbox" name="14_Volumen_de_uso" value="Cantidad estimada de usuarios."> Cantidad estimada de usuarios.</label>
-      <label><input type="checkbox" name="14_Volumen_de_uso" value="Cantidad estimada de registros por día."> Cantidad estimada de registros por día.</label>
-      <label><input type="checkbox" name="14_Volumen_de_uso" value="Cantidad promedio de fotos por registro."> Cantidad promedio de fotos por registro.</label>
-    </section>
+</section>
 
     <!-- 15 -->
     <section>
@@ -287,12 +288,26 @@
     </section>
 
     <!-- 16 -->
-    <section>
-      <h2>16. Soporte y mantenimiento</h2>
+<section>
+  <h2>16. Soporte y mantenimiento</h2>
 
-      <label><input type="checkbox" name="16_Soporte_y_mantenimiento" value="Nivel de mantenimiento esperado luego de la entrega."> Nivel de mantenimiento esperado luego de la entrega.</label>
-      <label><input type="checkbox" name="16_Soporte_y_mantenimiento" value="Probabilidad de pedidos de cambios una vez en uso real."> Probabilidad de pedidos de cambios una vez en uso real.</label>
-    </section>
+  <p><strong>
+    16.1 Nivel de mantenimiento esperado luego de la entrega
+  </strong></p>
+  <textarea
+    name="16_1_Nivel_mantenimiento"
+    placeholder="Ej.: correcciones menores, mejoras evolutivas, soporte continuo, mantenimiento mensual, etc."
+  ></textarea>
+
+  <p><strong>
+    16.2 Probabilidad de pedidos de cambios una vez en uso real
+  </strong></p>
+  <textarea
+    name="16_2_Probabilidad_cambios"
+    placeholder="Ej.: alta, media o baja, y por qué."
+  ></textarea>
+</section>
+
 
     <div class="acciones">
       <button type="button" id="btnPdf">Descargar PDF</button>
