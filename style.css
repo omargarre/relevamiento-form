@@ -1,21 +1,143 @@
-body{font-family:Arial,Helvetica,sans-serif;max-width:900px;margin:auto;padding:20px;background:#fafafa}
-section{margin-bottom:30px;border-bottom:1px solid #ddd;padding-bottom:20px}
-label{display:block;margin-top:8px}
-textarea,input,select{width:100%;padding:6px;margin-top:4px}
-textarea{min-height:70px}
-.acciones{margin-top:30px;display:flex;gap:15px}
-button{padding:12px;font-size:16px;cursor:pointer}
-/* ===== Alineación correcta de checkboxes y radios ===== */
+/* =========================
+   Reset básico
+========================= */
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
+body {
+  margin: 0;
+  padding: 20px;
+  background: #f5f5f5;
+  color: #000;
+}
+
+/* =========================
+   Contenedor principal
+========================= */
+form {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 24px;
+  border: 1px solid #ddd;
+}
+
+/* =========================
+   Títulos
+========================= */
+h1 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  border-top: 1px solid #ddd;
+  padding-top: 16px;
+}
+
+h3 {
+  font-size: 15px;
+  margin: 16px 0 6px 0;
+}
+
+/* =========================
+   Texto introductorio
+========================= */
+p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+/* =========================
+   Secciones
+========================= */
+section {
+  margin-bottom: 20px;
+}
+
+/* =========================
+   Inputs generales
+========================= */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border: 1px solid #999;
+  font-size: 14px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* =========================
+   Labels
+========================= */
 label {
-  display: flex;
-  align-items: center;
-  gap: 8px;            /* espacio entre cuadradito y texto */
+  display: block;
   margin: 6px 0;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* =========================
+   Checkboxes y radios
+   (ESTO ES LO CLAVE)
+========================= */
+label > input[type="checkbox"],
+label > input[type="radio"] {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* =========================
+   Botón submit
+========================= */
+button,
+input[type="submit"] {
+  margin-top: 24px;
+  padding: 10px 20px;
+  font-size: 14px;
+  background: #000;
+  color: #fff;
+  border: none;
   cursor: pointer;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
-  margin: 0;
+button:hover,
+input[type="submit"]:hover {
+  background: #333;
+}
+
+/* =========================
+   Separadores visuales
+========================= */
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 24px 0;
+}
+
+/* =========================
+   Responsive básico
+========================= */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  form {
+    padding: 16px;
+  }
 }
