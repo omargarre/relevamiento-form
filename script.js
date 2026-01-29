@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("relevamientoForm");
-  const btnPdf = document.getElementById("btnPdf");
 
-  // ORDEN Y TEXTO EXACTO DEL DOCUMENTO
+  /* ===== ESTRUCTURA FIJA DEL DOCUMENTO (1 a 16) ===== */
   const esquema = [
     ["1_1_Nombre_del_proyecto", "1.1 Nombre del proyecto"],
     ["1_2_Problema_a_resolver", "1.2 Describa brevemente qué problema quiere resolver con esta aplicación"],
@@ -57,6 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ["16_Soporte_y_mantenimiento", "16. Soporte y mantenimiento"]
   ];
 
+  /* ===== RECOLECTAR RESPUESTAS ===== */
   function recolectar() {
     const fd = new FormData(form);
     const data = {};
@@ -67,77 +67,51 @@ document.addEventListener("DOMContentLoaded", () => {
     return data;
   }
 
-  function generarTexto(data) {
-    let txt = "DOCUMENTO DE RECOPILACIÓN INICIAL\n\n";
-    esquema.forEach(([key, titulo]) => {
-      txt += titulo + ":\n";
-      if (data[key]) {
-        data[key].forEach(v => txt += "- " + v + "\n");
-      } else {
-        txt += "- No respondido\n";
-      }
-      txt += "\n";
-    });
-    return txt;
-  }
-
-  function generarPDF(data) {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF("p", "mm", "a4");
-    let y = 15;
-
-    pdf.setFontSize(12);
-    pdf.text("Documento de recopilación inicial", 10, y);
-    y += 10;
-    pdf.setFontSize(10);
+  /* ===== GENERAR HTML LINDO (MAIL) ===== */
+  function generarHTML(data) {
+    let html = "";
 
     esquema.forEach(([key, titulo]) => {
-      pdf.setFont(undefined, "bold");
-      pdf.text(titulo, 10, y);
-      y += 6;
+      html += `
+        <h3 style="margin-top:22px;border-bottom:1px solid #ccc;">
+          ${titulo}
+        </h3>
+      `;
 
-      pdf.setFont(undefined, "normal");
       if (data[key]) {
         data[key].forEach(v => {
-          const l = pdf.splitTextToSize("- " + v, 180);
-          pdf.text(l, 12, y);
-          y += l.length * 5;
+          html += `<p style="margin:4px 0 4px 15px;">• ${v}</p>`;
         });
       } else {
-        pdf.text("- No respondido", 12, y);
-        y += 5;
-      }
-
-      y += 6;
-      if (y > 270) {
-        pdf.addPage();
-        y = 15;
+        html += `<p style="margin-left:15px;color:#999;">No respondido</p>`;
       }
     });
 
-    pdf.save("relevamiento.pdf");
+    return html;
   }
 
-  btnPdf.addEventListener("click", () => {
-    generarPDF(recolectar());
-  });
-
-  form.addEventListener("submit", async e => {
+  /* ===== SUBMIT: ENVÍO MAIL HTML ===== */
+  form.addEventListener("submit", e => {
     e.preventDefault();
+
     const data = recolectar();
 
-    const mailData = new FormData();
-    mailData.append("subject", "Documento de recopilación inicial");
-    mailData.append("message", generarTexto(data));
-    mailData.append("_captcha", "false");
-
-    await fetch("https://formsubmit.co/ajax/omargarre@gmail.com", {
-      method: "POST",
-      body: mailData,
-      headers: { Accept: "application/json" }
-    });
-
-    alert("Formulario enviado correctamente.");
-    form.reset();
+    emailjs.send(
+      "TU_SERVICE_ID",
+      "TU_TEMPLATE_ID",
+      {
+        contenido: generarHTML(data),
+        fecha: new Date().toLocaleString()
+      }
+    ).then(
+      () => {
+        alert("Formulario enviado correctamente.");
+        form.reset();
+      },
+      (err) => {
+        console.error(err);
+        alert("Error al enviar el formulario.");
+      }
+    );
   });
 });
