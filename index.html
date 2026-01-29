@@ -1,157 +1,308 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Documento de recopilación inicial</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<h1>Documento de recopilación inicial</h1>
+  <h1>Documento de recopilación inicial</h1>
 
-<p>
-En este documento, incluimos preguntas y dudas acerca del uso general de la aplicación,
-necesarias para definir el primer flujo de operaciones, el tipo de desarrollo y qué debe
-tener en general para poder avanzar con el desarrollo de forma ordenada y organizada.
-</p>
+  <p>
+    En este documento, incluimos preguntas y dudas acerca del uso general de la aplicaciòn,
+    necesarias para definir el primer flujo de operaciones, el tipo de desarrollo y qué debe
+    tener en general para poder avanzar con el desarrollo de forma ordenada y organizada
+  </p>
 
-<form id="relevamientoForm">
+  <form id="relevamientoForm">
 
-  <!-- ========================= -->
-  <!-- 1. Información general -->
-  <!-- ========================= -->
-  <section>
-    <h2>1. Información general</h2>
+    <!-- FormSubmit (mail legible) -->
+    <input type="hidden" name="_subject" value="Documento de recopilación inicial - Formulario completado">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
 
-    <p><strong>1.1 Nombre del proyecto (si lo tiene definido):</strong></p>
-    <input type="text" name="1_1_Nombre_del_proyecto">
+    <!-- 1 -->
+    <section>
+      <h2>1. Información general</h2>
 
-    <p><strong>1.2 Describa brevemente qué problema quiere resolver con esta aplicación:</strong></p>
-    <textarea name="1_2_Problema_a_resolver"></textarea>
+      <p><strong>1.1 Nombre del proyecto (si lo tiene definido):</strong></p>
+      <input type="text" name="1_1_Nombre_del_proyecto" />
 
-    <p><strong>1.3 El proyecto está pensado inicialmente como:</strong></p>
-    <label><input type="checkbox" name="1_3_Tipo" value="Proyecto personal"> Proyecto personal</label>
-    <label><input type="checkbox" name="1_3_Tipo" value="Proyecto comercial"> Proyecto comercial</label>
-    <label><input type="checkbox" name="1_3_Tipo" value="Proyecto interno de trabajo"> Proyecto interno de trabajo</label>
-    <label><input type="checkbox" name="1_3_Tipo" value="Otro"> Otro</label>
-  </section>
+      <p><strong>1.2 Describa brevemente qué problema quiere resolver con esta aplicación:</strong></p>
+      <textarea name="1_2_Problema_a_resolver"></textarea>
 
-  <!-- ========================= -->
-  <!-- 2. Tipos de usuarios -->
-  <!-- ========================= -->
-  <section>
-    <h2>2. Tipos de usuarios</h2>
+      <p><strong>1.3 El proyecto está pensado inicialmente como:</strong></p>
+      <label><input type="checkbox" name="1_3_Proyecto_tipo" value="Proyecto personal"> Proyecto personal</label>
+      <label><input type="checkbox" name="1_3_Proyecto_tipo" value="Proyecto comercial"> Proyecto comercial</label>
+      <label><input type="checkbox" name="1_3_Proyecto_tipo" value="Proyecto interno de trabajo"> Proyecto interno de trabajo</label>
+      <label>
+        <input type="checkbox" name="1_3_Proyecto_tipo" value="Otro"> Otro:
+        <input type="text" name="1_3_Otro_detalle" placeholder="......................................................" />
+      </label>
+    </section>
 
-    <p><strong>2.1 ¿Quiénes cree que usarán la aplicación? (puede marcar más de una opción)</strong></p>
-    <label><input type="checkbox" name="2_1_Usuarios" value="Público general"> Público general</label>
-    <label><input type="checkbox" name="2_1_Usuarios" value="Usuarios internos"> Usuarios internos</label>
-    <label><input type="checkbox" name="2_1_Usuarios" value="Clientes"> Clientes</label>
+    <!-- 2 -->
+    <section>
+      <h2>2. Tipos de usuarios</h2>
 
-    <p><strong>2.2 Nivel de familiaridad de los usuarios con la tecnología:</strong></p>
-    <label><input type="radio" name="2_2_Nivel_usuario" value="Bajo"> Bajo</label>
-    <label><input type="radio" name="2_2_Nivel_usuario" value="Medio"> Medio</label>
-    <label><input type="radio" name="2_2_Nivel_usuario" value="Alto"> Alto</label>
-  </section>
+      <p><strong>2.1 ¿Quiénes cree que usarán la aplicación? (puede marcar más de una opción)</strong></p>
+      <label><input type="checkbox" name="2_1_Quienes" value="Público general"> Público general</label>
+      <label><input type="checkbox" name="2_1_Quienes" value="Técnicos / inspectores"> Técnicos / inspectores</label>
+      <label><input type="checkbox" name="2_1_Quienes" value="Vendedores"> Vendedores</label>
+      <label><input type="checkbox" name="2_1_Quienes" value="Personas que recorren zonas o locales"> Personas que recorren zonas o locales</label>
+      <label>
+        <input type="checkbox" name="2_1_Quienes" value="Otros"> Otros:
+        <input type="text" name="2_1_Otros_detalle" placeholder="......................................................" />
+      </label>
 
-  <!-- ========================= -->
-  <!-- 3. Contexto de uso -->
-  <!-- ========================= -->
-  <section>
-    <h2>3. Contexto de uso</h2>
+      <p><strong>2.2 El usuario típico:</strong></p>
+      <label><input type="checkbox" name="2_2_Usuario_tipico" value="Usa el celular todo el día"> Usa el celular todo el día</label>
+      <label><input type="checkbox" name="2_2_Usuario_tipico" value="Tiene conocimientos básicos"> Tiene conocimientos básicos</label>
+      <label><input type="checkbox" name="2_2_Usuario_tipico" value="Usa apps solo lo necesario"> Usa apps solo lo necesario</label>
 
-    <p><strong>3.1 ¿En qué contexto se utilizará principalmente la aplicación?</strong></p>
-    <textarea name="3_1_Contexto_de_uso"></textarea>
-  </section>
+      <p><strong>2.3 ¿Con qué frecuencia se usará la app?</strong></p>
+      <label><input type="checkbox" name="2_3_Frecuencia" value="Una sola vez"> Una sola vez</label>
+      <label><input type="checkbox" name="2_3_Frecuencia" value="Ocasionalmente"> Ocasionalmente</label>
+      <label><input type="checkbox" name="2_3_Frecuencia" value="Varias veces por semana"> Varias veces por semana</label>
+      <label><input type="checkbox" name="2_3_Frecuencia" value="Todos los días"> Todos los días</label>
 
-  <!-- ========================= -->
-  <!-- 4. Funcionalidad general -->
-  <!-- ========================= -->
-  <section>
-    <h2>4. Funcionalidad general</h2>
+      <p><strong>2.4 El usuario generalmente estará:</strong></p>
+      <label><input type="checkbox" name="2_4_Entorno" value="Caminando"> Caminando</label>
+      <label><input type="checkbox" name="2_4_Entorno" value="Trabajando"> Trabajando</label>
+      <label><input type="checkbox" name="2_4_Entorno" value="En movimiento"> En movimiento</label>
+      <label><input type="checkbox" name="2_4_Entorno" value="Sin apuro"> Sin apuro</label>
+    </section>
 
-    <p><strong>4.1 Funciones principales que debería cumplir la aplicación:</strong></p>
-    <textarea name="4_1_Funciones_principales"></textarea>
+    <!-- 3 -->
+    <section>
+      <h2>3. Contexto de uso</h2>
 
-    <p><strong>4.2 ¿Requiere carga de información por parte de los usuarios?</strong></p>
-    <label><input type="radio" name="4_2_Carga" value="Sí"> Sí</label>
-    <label><input type="radio" name="4_2_Carga" value="No"> No</label>
+      <p><strong>3.1 ¿En qué situaciones se usaría la app?</strong></p>
+      <p>(Ejemplo: recorridas, visitas, inspecciones, relevamientos)</p>
+      <textarea name="3_1_Situaciones_uso"></textarea>
 
-    <p><strong>4.3 Nivel de complejidad de la carga:</strong></p>
-    <label><input type="radio" name="4_3_Complejidad_carga" value="Simple"> Simple</label>
-    <label><input type="radio" name="4_3_Complejidad_carga" value="Media"> Media</label>
-    <label><input type="radio" name="4_3_Complejidad_carga" value="Compleja"> Compleja</label>
-  </section>
+      <p><strong>3.2 ¿El usuario tendrá siempre conexión a internet?</strong></p>
+      <label><input type="checkbox" name="3_2_Conexion" value="Sí"> Sí</label>
+      <label><input type="checkbox" name="3_2_Conexion" value="No"> No</label>
+      <label><input type="checkbox" name="3_2_Conexion" value="A veces"> A veces</label>
 
-  <!-- ========================= -->
-  <!-- 9. Alcance del MVP -->
-  <!-- ========================= -->
-  <section>
-    <h2>9. Alcance del MVP</h2>
+      <p><strong>3.3 ¿Es importante poder guardar información para continuar luego?</strong></p>
+      <label><input type="checkbox" name="3_3_Guardar_continuar" value="Sí"> Sí</label>
+      <label><input type="checkbox" name="3_3_Guardar_continuar" value="No"> No</label>
+    </section>
 
-    <p><strong>9.1 Funcionalidades imprescindibles (MVP):</strong></p>
-    <textarea name="9_1_MVP_imprescindible"></textarea>
+    <!-- 4 -->
+    <section>
+      <h2>4. Carga de información</h2>
 
-    <p><strong>9.2 Funcionalidades deseables a futuro:</strong></p>
-    <textarea name="9_2_MVP_futuro"></textarea>
+      <p><strong>4.1 ¿Qué tipo de información es más importante?</strong></p>
+      <label><input type="checkbox" name="4_1_Info_importante" value="Texto"> Texto</label>
+      <label><input type="checkbox" name="4_1_Info_importante" value="Fotos"> Fotos</label>
+      <label><input type="checkbox" name="4_1_Info_importante" value="Videos"> Videos</label>
+      <label><input type="checkbox" name="4_1_Info_importante" value="Ubicación"> Ubicación</label>
+      <label><input type="checkbox" name="4_1_Info_importante" value="Fecha y hora"> Fecha y hora</label>
 
-    <p><strong>9.3 Funcionalidades fuera del alcance inicial:</strong></p>
-    <textarea name="9_3_MVP_fuera"></textarea>
-  </section>
+      <p><strong>4.2 ¿Qué datos deberían ser obligatorios?</strong></p>
+      <label><input type="checkbox" name="4_2_Obligatorios" value="Ubicación"> Ubicación</label>
+      <label><input type="checkbox" name="4_2_Obligatorios" value="Al menos una foto"> Al menos una foto</label>
+      <label><input type="checkbox" name="4_2_Obligatorios" value="Texto descriptivo"> Texto descriptivo</label>
+      <label><input type="checkbox" name="4_2_Obligatorios" value="Fecha y hora"> Fecha y hora</label>
 
-  <!-- ========================= -->
-  <!-- 10. Criterios de éxito -->
-  <!-- ========================= -->
-  <section>
-    <h2>10. Criterios de éxito</h2>
+      <p><strong>4.3 La carga de datos debería ser:</strong></p>
+      <label><input type="checkbox" name="4_3_Tipo_carga" value="Muy simple (pocos campos)"> Muy simple (pocos campos)</label>
+      <label><input type="checkbox" name="4_3_Tipo_carga" value="Guiada paso a paso"> Guiada paso a paso</label>
+      <label><input type="checkbox" name="4_3_Tipo_carga" value="Detallada según categoría"> Detallada según categoría</label>
 
-    <p><strong>10.1 ¿Cómo se medirá el éxito del proyecto?</strong></p>
-    <textarea name="10_1_Exito"></textarea>
-  </section>
+      <p><strong>4.4 El usuario debería poder:</strong></p>
+      <label><input type="checkbox" name="4_4_Usuario_puede" value="Guardar información incompleta"> Guardar información incompleta</label>
+      <label><input type="checkbox" name="4_4_Usuario_puede" value="Editar información luego"> Editar información luego</label>
+      <label><input type="checkbox" name="4_4_Usuario_puede" value="Eliminar registros"> Eliminar registros</label>
+    </section>
 
-  <!-- ========================= -->
-  <!-- 15. Condiciones generales -->
-  <!-- ========================= -->
-  <section>
-    <h2>15. Condiciones generales</h2>
+    <!-- 5 -->
+    <section>
+      <h2>5. Fotos y videos</h2>
 
-    <p><strong>15.2 Necesidad de que el sistema sea ampliable:</strong></p>
-    <label><input type="radio" name="15_2_Ampliable" value="Sí"> Sí</label>
-    <label><input type="radio" name="15_2_Ampliable" value="No"> No</label>
+      <p><strong>5.1 ¿Cuántas fotos suele necesitar cargar?</strong></p>
+      <label><input type="checkbox" name="5_1_Cuantas_fotos" value="Una"> Una</label>
+      <label><input type="checkbox" name="5_1_Cuantas_fotos" value="Varias"> Varias</label>
+      <label><input type="checkbox" name="5_1_Cuantas_fotos" value="Indistinto"> Indistinto</label>
 
-    <p><strong>15.3 Propiedad del código (cliente / desarrollador / indefinido):</strong></p>
-    <label><input type="radio" name="15_3_Codigo" value="Cliente"> Cliente</label>
-    <label><input type="radio" name="15_3_Codigo" value="Desarrollador"> Desarrollador</label>
-    <label><input type="radio" name="15_3_Codigo" value="Indefinido"> Indefinido</label>
-  </section>
+      <p><strong>5.2 El uso de video es:</strong></p>
+      <label><input type="checkbox" name="5_2_Video_importancia" value="Importante"> Importante</label>
+      <label><input type="checkbox" name="5_2_Video_importancia" value="Opcional"> Opcional</label>
+      <label><input type="checkbox" name="5_2_Video_importancia" value="No necesario para el MVP"> No necesario para el MVP</label>
 
-  <!-- ========================= -->
-  <!-- 16. Soporte y mantenimiento -->
-  <!-- ========================= -->
-  <section>
-    <h2>16. Soporte y mantenimiento</h2>
+      <p><strong>5.3 El video debería:</strong></p>
+      <label><input type="checkbox" name="5_3_Video_deberia" value="Estar dentro del PDF"> Estar dentro del PDF</label>
+      <label><input type="checkbox" name="5_3_Video_deberia" value="Enviarse como archivo aparte"> Enviarse como archivo aparte</label>
+      <label><input type="checkbox" name="5_3_Video_deberia" value="No incluirse inicialmente"> No incluirse inicialmente</label>
+    </section>
 
-    <p><strong>16.1 Nivel de mantenimiento esperado luego de la entrega:</strong></p>
-    <textarea name="16_1_Mantenimiento"></textarea>
+    <!-- 6 -->
+    <section>
+      <h2>6. PDF generado</h2>
 
-    <p><strong>16.2 Probabilidad de pedidos de cambios una vez en uso real:</strong></p>
-    <label><input type="radio" name="16_2_Cambios" value="Alta"> Alta</label>
-    <label><input type="radio" name="16_2_Cambios" value="Media"> Media</label>
-    <label><input type="radio" name="16_2_Cambios" value="Baja"> Baja</label>
-  </section>
+      <p><strong>6.1 ¿Para qué se usará principalmente el PDF?</strong></p>
+      <label><input type="checkbox" name="6_1_PDF_uso" value="Enviar a otras personas"> Enviar a otras personas</label>
+      <label><input type="checkbox" name="6_1_PDF_uso" value="Guardar respaldo"> Guardar respaldo</label>
+      <label><input type="checkbox" name="6_1_PDF_uso" value="Trabajar en PC"> Trabajar en PC</label>
+      <label><input type="checkbox" name="6_1_PDF_uso" value="Cargar en otros sistemas"> Cargar en otros sistemas</label>
 
-  <!-- ========================= -->
-  <!-- Acciones -->
-  <!-- ========================= -->
-  <div class="acciones">
-    <button type="button" id="btnPdf">Descargar PDF</button>
-    <button type="submit">Enviar formulario</button>
-  </div>
+      <p><strong>6.2 ¿Qué es imprescindible que permita el PDF?</strong></p>
+      <label><input type="checkbox" name="6_2_PDF_imprescindible" value="Copiar texto"> Copiar texto</label>
+      <label><input type="checkbox" name="6_2_PDF_imprescindible" value="Guardar imágenes"> Guardar imágenes</label>
+      <label><input type="checkbox" name="6_2_PDF_imprescindible" value="No tener protección"> No tener protección</label>
+      <label><input type="checkbox" name="6_2_PDF_imprescindible" value="Diseño claro y simple"> Diseño claro y simple</label>
 
-</form>
+      <p><strong>6.3 El diseño del PDF debería ser:</strong></p>
+      <label><input type="checkbox" name="6_3_PDF_diseno" value="Simple"> Simple</label>
+      <label><input type="checkbox" name="6_3_PDF_diseno" value="Visual"> Visual</label>
+      <label><input type="checkbox" name="6_3_PDF_diseno" value="Ambos"> Ambos</label>
+    </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="script.js"></script>
+    <!-- 7 -->
+    <section>
+      <h2>7. Compartir información</h2>
+
+      <p><strong>7.1 ¿Cómo se compartirá mayormente la información?</strong></p>
+      <label><input type="checkbox" name="7_1_Compartir" value="WhatsApp"> WhatsApp</label>
+      <label><input type="checkbox" name="7_1_Compartir" value="Email"> Email</label>
+      <label><input type="checkbox" name="7_1_Compartir" value="Descarga en el celular"> Descarga en el celular</label>
+
+      <p><strong>7.2 ¿Se enviará el PDF a:</strong></p>
+      <label><input type="checkbox" name="7_2_Enviar_a" value="Una persona"> Una persona</label>
+      <label><input type="checkbox" name="7_2_Enviar_a" value="Varias personas"> Varias personas</label>
+
+      <p><strong>7.3 ¿Es importante guardar un historial de envíos?</strong></p>
+      <label><input type="checkbox" name="7_3_Historial_envios" value="Sí"> Sí</label>
+      <label><input type="checkbox" name="7_3_Historial_envios" value="No"> No</label>
+    </section>
+
+    <!-- 8 -->
+    <section>
+      <h2>8. Búsqueda y patrocinadores</h2>
+
+      <p><strong>8.1 ¿Es importante buscar lugares similares cercanos?</strong></p>
+      <label><input type="checkbox" name="8_1_Buscar_cercanos" value="Muy importante"> Muy importante</label>
+      <label><input type="checkbox" name="8_1_Buscar_cercanos" value="Secundario"> Secundario</label>
+      <label><input type="checkbox" name="8_1_Buscar_cercanos" value="No necesario en el MVP"> No necesario en el MVP</label>
+
+      <p><strong>8.2 ¿Qué radio de búsqueda es más útil?</strong></p>
+      <label><input type="checkbox" name="8_2_Radio" value="Metros"> Metros</label>
+      <label><input type="checkbox" name="8_2_Radio" value="Cuadras"> Cuadras</label>
+      <label><input type="checkbox" name="8_2_Radio" value="Kilómetros"> Kilómetros</label>
+
+      <p><strong>8.3 ¿Qué información debería mostrarse de esos lugares?</strong></p>
+      <label><input type="checkbox" name="8_3_Info_lugares" value="Nombre"> Nombre</label>
+      <label><input type="checkbox" name="8_3_Info_lugares" value="Teléfono"> Teléfono</label>
+      <label><input type="checkbox" name="8_3_Info_lugares" value="Dirección"> Dirección</label>
+      <label><input type="checkbox" name="8_3_Info_lugares" value="Link web"> Link web</label>
+
+      <p><strong>8.4 ¿Le molestaría que algunos resultados sean patrocinados?</strong></p>
+      <label><input type="checkbox" name="8_4_Patrocinados" value="No"> No</label>
+      <label><input type="checkbox" name="8_4_Patrocinados" value="Solo si está claro"> Solo si está claro</label>
+      <label><input type="checkbox" name="8_4_Patrocinados" value="Sí"> Sí</label>
+    </section>
+
+    <!-- 9 -->
+    <section>
+      <h2>9. Alcance del MVP</h2>
+
+      <p><strong>9.1 ¿Qué considera imprescindible que tenga la primera versión de la app?</strong></p>
+      <textarea name="9_1_MVP_imprescindible"></textarea>
+
+      <p><strong>9.2 ¿Qué funcionalidades pueden esperar para más adelante?</strong></p>
+      <textarea name="9_2_MVP_mas_adelante"></textarea>
+
+      <p><strong>9.3 ¿Qué cosas dejaría afuera del MVP sin problema?</strong></p>
+      <textarea name="9_3_MVP_afuera"></textarea>
+    </section>
+
+    <!-- 10 -->
+    <section>
+      <h2>10. Éxito del proyecto</h2>
+
+      <p><strong>10.1 ¿Cuándo consideraría que la app fue un éxito?</strong></p>
+      <textarea name="10_1_Exito"></textarea>
+
+      <p><strong>10.2 ¿Qué haría que deje de usar la aplicación?</strong></p>
+      <label><input type="checkbox" name="10_2_Deja_de_usar" value="Es lenta"> Es lenta</label>
+      <label><input type="checkbox" name="10_2_Deja_de_usar" value="Es confusa"> Es confusa</label>
+      <label><input type="checkbox" name="10_2_Deja_de_usar" value="Pide demasiados datos"> Pide demasiados datos</label>
+      <label><input type="checkbox" name="10_2_Deja_de_usar" value="Falla la ubicación"> Falla la ubicación</label>
+      <label>
+        <input type="checkbox" name="10_2_Deja_de_usar" value="Otro"> Otro:
+        <input type="text" name="10_2_Otro_detalle" placeholder="......................................................" />
+      </label>
+    </section>
+
+    <!-- 11 -->
+    <section>
+      <h2>11. Usuarios, accesos y control</h2>
+
+      <label><input type="checkbox" name="11_Usuarios_accesos_control" value="¿La app requiere login de usuarios?"> ¿La app requiere login de usuarios?</label>
+      <label><input type="checkbox" name="11_Usuarios_accesos_control" value="Tipo de autenticación (usuario/contraseña, Google, Microsoft, otro)."> Tipo de autenticación (usuario/contraseña, Google, Microsoft, otro).</label>
+      <label><input type="checkbox" name="11_Usuarios_accesos_control" value="Existencia de distintos roles (usuario, supervisor, administrador)."> Existencia de distintos roles (usuario, supervisor, administrador).</label>
+      <label><input type="checkbox" name="11_Usuarios_accesos_control" value="Visibilidad de datos: solo propios / todos."> Visibilidad de datos: solo propios / todos.</label>
+    </section>
+
+    <!-- 12 -->
+    <section>
+      <h2>12. Almacenamiento y datos</h2>
+
+      <label><input type="checkbox" name="12_Almacenamiento_y_datos" value="Almacenamiento de datos: solo dispositivo / nube / ambos."> Almacenamiento de datos: solo dispositivo / nube / ambos.</label>
+      <label><input type="checkbox" name="12_Almacenamiento_y_datos" value="Respaldo automático de la información."> Respaldo automático de la información.</label>
+      <label><input type="checkbox" name="12_Almacenamiento_y_datos" value="Tiempo de conservación de los datos."> Tiempo de conservación de los datos.</label>
+    </section>
+
+    <!-- 13 -->
+    <section>
+      <h2>13. Ubicación y mapas</h2>
+
+      <label><input type="checkbox" name="13_Ubicacion_y_mapas" value="Obtención de ubicación: GPS automático / manual / ambas."> Obtención de ubicación: GPS automático / manual / ambas.</label>
+      <label><input type="checkbox" name="13_Ubicacion_y_mapas" value="Uso de mapa interactivo o solo link externo."> Uso de mapa interactivo o solo link externo.</label>
+      <label><input type="checkbox" name="13_Ubicacion_y_mapas" value="Proveedor de mapas (Google Maps, OpenStreetMap, indistinto)."> Proveedor de mapas (Google Maps, OpenStreetMap, indistinto).</label>
+    </section>
+
+    <!-- 14 -->
+    <section>
+      <h2>14. Volumen de uso</h2>
+
+      <label><input type="checkbox" name="14_Volumen_de_uso" value="Cantidad estimada de usuarios."> Cantidad estimada de usuarios.</label>
+      <label><input type="checkbox" name="14_Volumen_de_uso" value="Cantidad estimada de registros por día."> Cantidad estimada de registros por día.</label>
+      <label><input type="checkbox" name="14_Volumen_de_uso" value="Cantidad promedio de fotos por registro."> Cantidad promedio de fotos por registro.</label>
+    </section>
+
+    <!-- 15 -->
+    <section>
+      <h2>15. Evolución comercial</h2>
+
+      <label><input type="checkbox" name="15_Evolucion_comercial" value="Posibilidad de reutilización o venta a otros clientes."> Posibilidad de reutilización o venta a otros clientes.</label>
+      <label><input type="checkbox" name="15_Evolucion_comercial" value="Necesidad de que el sistema sea ampliable."> Necesidad de que el sistema sea ampliable.</label>
+      <label><input type="checkbox" name="15_Evolucion_comercial" value="Propiedad del código (cliente / desarrollador / indefinido)."> Propiedad del código (cliente / desarrollador / indefinido).</label>
+    </section>
+
+    <!-- 16 -->
+    <section>
+      <h2>16. Soporte y mantenimiento</h2>
+
+      <label><input type="checkbox" name="16_Soporte_y_mantenimiento" value="Nivel de mantenimiento esperado luego de la entrega."> Nivel de mantenimiento esperado luego de la entrega.</label>
+      <label><input type="checkbox" name="16_Soporte_y_mantenimiento" value="Probabilidad de pedidos de cambios una vez en uso real."> Probabilidad de pedidos de cambios una vez en uso real.</label>
+    </section>
+
+    <div class="acciones">
+      <button type="button" id="btnPdf">Descargar PDF</button>
+      <button type="submit">Enviar formulario</button>
+    </div>
+
+  </form>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="script.js"></script>
 
 </body>
 </html>
