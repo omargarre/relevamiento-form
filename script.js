@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("relevamientoForm");
+  const btnPdf = document.getElementById("btnPdf");
 
-  /* ===== ESTRUCTURA FIJA DEL DOCUMENTO (1 a 16) ===== */
+  /* ===== ESTRUCTURA FIJA DEL DOCUMENTO ===== */
   const esquema = [
     ["1_1_Nombre_del_proyecto", "1.1 Nombre del proyecto"],
     ["1_2_Problema_a_resolver", "1.2 Describa brevemente qué problema quiere resolver con esta aplicación"],
@@ -53,10 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
     ["13_Ubicacion_y_mapas", "13. Ubicación y mapas"],
     ["14_Volumen_de_uso", "14. Volumen de uso"],
     ["15_Evolucion_comercial", "15. Evolución comercial"],
-    ["16_Soporte_y_mantenimiento", "16. Soporte y mantenimiento"]
+    ["16_1_Nivel_mantenimiento", "16.1 Nivel de mantenimiento"],
+    ["16_2_Probabilidad_cambios", "16.2 Probabilidad de cambios"]
   ];
 
-  /* ===== RECOLECTAR RESPUESTAS ===== */
+  /* ===== RECOLECTAR DATOS ===== */
   function recolectar() {
     const fd = new FormData(form);
     const data = {};
@@ -67,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return data;
   }
 
-  /* ===== GENERAR HTML LINDO (MAIL) ===== */
+  /* ===== GENERAR HTML ===== */
   function generarHTML(data) {
     let html = "";
 
@@ -78,9 +80,11 @@ document.addEventListener("DOMContentLoaded", () => {
         </h3>
       `;
 
-      if (data[key]) {
+      if (data[key] && data[key].some(v => v.trim() !== "")) {
         data[key].forEach(v => {
-          html += `<p style="margin:4px 0 4px 15px;">• ${v}</p>`;
+          if (v.trim() !== "") {
+            html += `<p style="margin:4px 0 4px 15px;">• ${v}</p>`;
+          }
         });
       } else {
         html += `<p style="margin-left:15px;color:#999;">No respondido</p>`;
@@ -90,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return html;
   }
 
-  /* ===== SUBMIT: ENVÍO MAIL HTML ===== */
+  /* ===== ENVÍO DE MAIL ===== */
   form.addEventListener("submit", e => {
     e.preventDefault();
 
@@ -113,5 +117,29 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Error al enviar el formulario.");
       }
     );
+  });
+
+  /* ===== DESCARGA PDF ===== */
+  btnPdf.addEventListener("click", () => {
+    const data = recolectar();
+    const contenidoHTML = generarHTML(data);
+
+    const contenedor = document.createElement("div");
+    contenedor.innerHTML = `
+      <h1>Documento de recopilación inicial</h1>
+      <p>Fecha: ${new Date().toLocaleString()}</p>
+      <hr>
+      ${contenidoHTML}
+    `;
+
+    html2pdf()
+      .set({
+        margin: 10,
+        filename: "relevamiento.pdf",
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+      })
+      .from(contenedor)
+      .save();
   });
 });
