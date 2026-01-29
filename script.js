@@ -2,162 +2,140 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("relevamientoForm");
   const btnPdf = document.getElementById("btnPdf");
 
-  /* =========================
-     TÍTULOS (mapa Word)
-  ========================= */
-  const titulos = {
-    "1_1_Nombre_del_proyecto": "1.1 Nombre del proyecto",
-    "1_2_Problema_a_resolver": "1.2 Describa brevemente qué problema quiere resolver con esta aplicación",
-    "1_3_Proyecto_tipo": "1.3 El proyecto está pensado inicialmente como",
-    "1_3_Otro_detalle": "1.3 Otro (detalle)",
+  // ORDEN Y TEXTO EXACTO DEL DOCUMENTO
+  const esquema = [
+    ["1_1_Nombre_del_proyecto", "1.1 Nombre del proyecto"],
+    ["1_2_Problema_a_resolver", "1.2 Describa brevemente qué problema quiere resolver con esta aplicación"],
+    ["1_3_Proyecto_tipo", "1.3 El proyecto está pensado inicialmente como"],
+    ["1_3_Otro_detalle", "1.3 Otro (detalle)"],
 
-    "2_1_Quienes": "2.1 ¿Quiénes usarán la aplicación?",
-    "2_1_Otros_detalle": "2.1 Otros (detalle)",
-    "2_2_Usuario_tipico": "2.2 El usuario típico",
-    "2_3_Frecuencia": "2.3 Frecuencia de uso",
-    "2_4_Entorno": "2.4 El usuario generalmente estará",
+    ["2_1_Quienes", "2.1 ¿Quiénes usarán la aplicación?"],
+    ["2_1_Otros_detalle", "2.1 Otros (detalle)"],
+    ["2_2_Usuario_tipico", "2.2 El usuario típico"],
+    ["2_3_Frecuencia", "2.3 Frecuencia de uso"],
+    ["2_4_Entorno", "2.4 El usuario generalmente estará"],
 
-    "3_1_Situaciones_uso": "3.1 Contexto de uso",
-    "3_2_Conexion": "3.2 Conectividad",
-    "3_3_Guardar_continuar": "3.3 Guardar para continuar",
+    ["3_1_Situaciones_uso", "3.1 Contexto de uso"],
+    ["3_2_Conexion", "3.2 Conectividad"],
+    ["3_3_Guardar_continuar", "3.3 Guardar para continuar"],
 
-    "4_1_Info_importante": "4.1 Información más importante",
-    "4_2_Obligatorios": "4.2 Datos obligatorios",
-    "4_3_Tipo_carga": "4.3 Tipo de carga",
-    "4_4_Usuario_puede": "4.4 El usuario debería poder",
+    ["4_1_Info_importante", "4.1 Información más importante"],
+    ["4_2_Obligatorios", "4.2 Datos obligatorios"],
+    ["4_3_Tipo_carga", "4.3 Tipo de carga"],
+    ["4_4_Usuario_puede", "4.4 El usuario debería poder"],
 
-    "5_1_Cuantas_fotos": "5.1 Cantidad de fotos",
-    "5_2_Video_importancia": "5.2 Uso de video",
-    "5_3_Video_deberia": "5.3 El video debería",
+    ["5_1_Cuantas_fotos", "5.1 Cantidad de fotos"],
+    ["5_2_Video_importancia", "5.2 Uso de video"],
+    ["5_3_Video_deberia", "5.3 El video debería"],
 
-    "6_1_PDF_uso": "6.1 Uso del PDF",
-    "6_2_PDF_imprescindible": "6.2 Requisitos del PDF",
-    "6_3_PDF_diseno": "6.3 Diseño del PDF",
+    ["6_1_PDF_uso", "6.1 Uso del PDF"],
+    ["6_2_PDF_imprescindible", "6.2 Requisitos del PDF"],
+    ["6_3_PDF_diseno", "6.3 Diseño del PDF"],
 
-    "7_1_Compartir": "7.1 Forma de compartir",
-    "7_2_Enviar_a": "7.2 Envío del PDF",
-    "7_3_Historial_envios": "7.3 Historial de envíos",
+    ["7_1_Compartir", "7.1 Forma de compartir"],
+    ["7_2_Enviar_a", "7.2 Envío del PDF"],
+    ["7_3_Historial_envios", "7.3 Historial de envíos"],
 
-    "8_1_Buscar_cercanos": "8.1 Búsqueda cercana",
-    "8_2_Radio": "8.2 Radio de búsqueda",
-    "8_3_Info_lugares": "8.3 Información mostrada",
-    "8_4_Patrocinados": "8.4 Resultados patrocinados",
+    ["8_1_Buscar_cercanos", "8.1 Búsqueda cercana"],
+    ["8_2_Radio", "8.2 Radio de búsqueda"],
+    ["8_3_Info_lugares", "8.3 Información mostrada"],
+    ["8_4_Patrocinados", "8.4 Resultados patrocinados"],
 
-    "9_1_MVP_imprescindible": "9.1 Funcionalidades imprescindibles (MVP)",
-    "9_2_MVP_mas_adelante": "9.2 Funcionalidades futuras",
-    "9_3_MVP_afuera": "9.3 Fuera del MVP",
+    ["9_1_MVP_imprescindible", "9.1 Funcionalidades imprescindibles (MVP)"],
+    ["9_2_MVP_mas_adelante", "9.2 Funcionalidades futuras"],
+    ["9_3_MVP_afuera", "9.3 Fuera del MVP"],
 
-    "10_1_Exito": "10.1 Éxito del proyecto",
-    "10_2_Deja_de_usar": "10.2 Motivos de abandono",
-    "10_2_Otro_detalle": "10.2 Otro (detalle)",
+    ["10_1_Exito", "10.1 Éxito del proyecto"],
+    ["10_2_Deja_de_usar", "10.2 Motivos de abandono"],
+    ["10_2_Otro_detalle", "10.2 Otro (detalle)"],
 
-    "11_Usuarios_accesos_control": "11. Usuarios, accesos y control",
-    "12_Almacenamiento_y_datos": "12. Almacenamiento y datos",
-    "13_Ubicacion_y_mapas": "13. Ubicación y mapas",
-    "14_Volumen_de_uso": "14. Volumen de uso",
-    "15_Evolucion_comercial": "15. Evolución comercial",
-    "16_Soporte_y_mantenimiento": "16. Soporte y mantenimiento"
-  };
+    ["11_Usuarios_accesos_control", "11. Usuarios, accesos y control"],
+    ["12_Almacenamiento_y_datos", "12. Almacenamiento y datos"],
+    ["13_Ubicacion_y_mapas", "13. Ubicación y mapas"],
+    ["14_Volumen_de_uso", "14. Volumen de uso"],
+    ["15_Evolucion_comercial", "15. Evolución comercial"],
+    ["16_Soporte_y_mantenimiento", "16. Soporte y mantenimiento"]
+  ];
 
-  /* =========================
-     RECOLECTAR TODO (SIN FILTROS)
-  ========================= */
-  function recolectarDatos() {
-    const data = {};
+  function recolectar() {
     const fd = new FormData(form);
-
+    const data = {};
     for (const [k, v] of fd.entries()) {
-      if (k.startsWith("_")) continue;
-
       if (!data[k]) data[k] = [];
-      data[k].push(v || "-");
+      data[k].push(v);
     }
     return data;
   }
 
-  /* =========================
-     GENERAR PDF (solo botón PDF)
-  ========================= */
+  function generarTexto(data) {
+    let txt = "DOCUMENTO DE RECOPILACIÓN INICIAL\n\n";
+    esquema.forEach(([key, titulo]) => {
+      txt += titulo + ":\n";
+      if (data[key]) {
+        data[key].forEach(v => txt += "- " + v + "\n");
+      } else {
+        txt += "- No respondido\n";
+      }
+      txt += "\n";
+    });
+    return txt;
+  }
+
   function generarPDF(data) {
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF("p", "mm", "a4");
-
     let y = 15;
+
     pdf.setFontSize(12);
     pdf.text("Documento de recopilación inicial", 10, y);
     y += 10;
-
     pdf.setFontSize(10);
 
-    for (const k in data) {
-      const titulo = titulos[k] || k;
-
+    esquema.forEach(([key, titulo]) => {
       pdf.setFont(undefined, "bold");
       pdf.text(titulo, 10, y);
       y += 6;
 
       pdf.setFont(undefined, "normal");
-      data[k].forEach(val => {
-        const lineas = pdf.splitTextToSize("- " + val, 180);
-        pdf.text(lineas, 12, y);
-        y += lineas.length * 5;
-      });
+      if (data[key]) {
+        data[key].forEach(v => {
+          const l = pdf.splitTextToSize("- " + v, 180);
+          pdf.text(l, 12, y);
+          y += l.length * 5;
+        });
+      } else {
+        pdf.text("- No respondido", 12, y);
+        y += 5;
+      }
 
       y += 6;
       if (y > 270) {
         pdf.addPage();
         y = 15;
       }
-    }
+    });
 
     pdf.save("relevamiento.pdf");
   }
 
-  /* =========================
-     TEXTO MAIL
-  ========================= */
-  function armarTextoMail(data) {
-    let txt = "DOCUMENTO DE RECOPILACIÓN INICIAL\n\n";
-
-    for (const k in data) {
-      const titulo = titulos[k] || k;
-      txt += titulo + ":\n";
-      data[k].forEach(v => txt += "- " + v + "\n");
-      txt += "\n";
-    }
-    return txt;
-  }
-
-  /* =========================
-     BOTÓN PDF
-  ========================= */
   btnPdf.addEventListener("click", () => {
-    generarPDF(recolectarDatos());
+    generarPDF(recolectar());
   });
 
-  /* =========================
-     SUBMIT (SOLO MAIL)
-  ========================= */
   form.addEventListener("submit", async e => {
     e.preventDefault();
-
-    const data = recolectarDatos();
+    const data = recolectar();
 
     const mailData = new FormData();
     mailData.append("subject", "Documento de recopilación inicial");
-    mailData.append("message", armarTextoMail(data));
+    mailData.append("message", generarTexto(data));
     mailData.append("_captcha", "false");
 
-    const r = await fetch("https://formsubmit.co/ajax/omargarre@gmail.com", {
+    await fetch("https://formsubmit.co/ajax/omargarre@gmail.com", {
       method: "POST",
       body: mailData,
       headers: { Accept: "application/json" }
     });
-
-    if (!r.ok) {
-      alert("Falló el envío del mail.");
-      return;
-    }
 
     alert("Formulario enviado correctamente.");
     form.reset();
